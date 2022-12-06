@@ -16,6 +16,7 @@
         <div id="unity-progress-bar-empty">
           <div id="unity-progress-bar-full"></div>
         </div>
+        <div id="unity-wait"></div>
       </div>
       <div id="unity-warning"> </div>
     </div>
@@ -90,6 +91,10 @@
       script.src = loaderUrl;
       script.onload = () => {
         createUnityInstance(canvas, config, (progress) => {
+
+          if(0.89 <= progress)
+            progress = 1.0;
+
           progressBarFull.style.width = 100 * progress + "%";
         }).then((unityInstance) => {
           loadingBar.style.display = "none";
